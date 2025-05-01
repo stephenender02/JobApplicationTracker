@@ -11,7 +11,7 @@
 
   let myDataExample1 = {
     Job: "Software Engineer",
-    Company: "Google",
+    Company: "Company A",
     Location: "Mountain View, CA",
     Status: 4,
     DateApplied: "2024-09-22",
@@ -31,7 +31,7 @@
 
   let myDataExample2 = {
     Job: "Application Developer",
-    Company: "St. Luke's University Health Network",
+    Company: "Company B",
     Location: "Allentown, PA",
     Status: 2,
     DateApplied: "2024-10-02",
@@ -47,7 +47,7 @@
 
   let myDataExample3 = {
     Job: "Application Developer",
-    Company: "St. Luke's University Health Network",
+    Company: "Company C",
     Location: "Allentown, PA",
     Status: 1,
     DateApplied: "2024-10-02",
