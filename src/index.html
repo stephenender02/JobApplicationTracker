@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+  <header>
+    <h1>My Applications</h1>
+  </header>
+
+  <main>
+
+    <!-- Template for Job Cards -->
+    <template id="job-card-template">
+      <article class="job-card">
+        <div class="main-info-subcard" id="main-info">
+          <div class="job-title-box" id="job-title-box">
+            <!-- H3 for job -->
+          </div>
+          <div class="job-info-box" id="job-info-box">
+            <!-- p for date -->
+            <div class="job-info-subbox" id="job-info-subbox">
+              <!-- p for company -->
+              <!-- p for location -->
+            </div>
+          </div>
+        </div>
+        <div class="detailed-info-subcard">
+          <div class="notes-box">
+            <h5>Notes:</h5>
+            <ul id="notes-box-ul">
+              <!-- List item notes -->
+            </ul>
+          </div>
+          <div class="tags-box">
+            <h5>Tags:</h5>
+            <div class="tags-subbox" id="tags-subbox">
+              <!-- p for each tag -->
+            </div>
+          </div>
+          <div class="resume-file-box">
+            <h5>Resume Used:</h5>
+            <p>Resume</p> <!-- TODO: Figure out downloading icon -->
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <!-- TODO: Button for form to add new jobs? -->
+
+  </main>
+
+
+  <footer>
+
+  </footer>
+  <script src="scripts/displayApplications.js"></script>
+</body>
+</html>
