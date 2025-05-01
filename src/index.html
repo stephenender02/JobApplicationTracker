@@ -52,7 +52,7 @@
       </article>
     </template>
 
-    <!-- Modal -->
+    <!-- Add New Application Modal -->
     <div class="modal fade" id="addApplicationModal" tabindex="-1" aria-labelledby="addApplicationModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -71,6 +71,7 @@
               <label for="location">Location:</label>
               <input type="text" id="location" name="location" placeholder="Cupertino, CA" required> <!--TODO: Can I autofill this form -->
               <br>
+              <!-- Status -->
               <label for="status">Status:</label><br>
               <label for="interested">Interested</label>
               <input type="radio" id="interested" name="status" value="Interested" required><br>
@@ -85,17 +86,29 @@
               <br>
               <label for="date">Date Applied:</label>
               <input type="date" name="date" id="date" required><br>
-
-              <!-- TODO: Tags -->
-              <!-- TODO: Notes -->
+              <!-- Tags -->
+              <label for="tags">Tags:</label>
+              <div id="tags-section">
+                <input type="text" name="tags" id="tag1" placeholder="Top Choice">
+                <input type="color" name="tags-color" id="tag-color1">
+              </div>
+              <button id="new-tag-button">Add a Tag</button>
+              <br>
+              <!-- Notes -->
+              <label for="notes">Notes:</label>
+              <div id="notes-section">
+                <input type="text" name="notes" id="note1" placeholder="Salary starts at $75k">
+              </div>
+              <button id="new-note-button">Add a Note</button>
+              <br>
+              <!-- Resume -->
               <label for="resume">Resume Used for Application:</label>
               <input type="file" name="resume" id="resume">
-
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary" id="new-application-save-button">Save changes</button>
           </div>
         </div>
       </div>

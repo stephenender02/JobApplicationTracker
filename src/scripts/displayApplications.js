@@ -142,4 +142,66 @@
   button.setAttribute('data-bs-target', '#addApplicationModal');
   mainSection.append(button);
 
+  // Handle New Application Form tags
+  let tagDiv = document.getElementById('tags-section');
+  let newTagButton = document.getElementById('new-tag-button');
+  let tagCounter = 1;
+  // New tag is added
+  newTagButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    tagCounter++;
+    let newTagField = document.createElement('input');
+    newTagField.setAttribute('type', 'text');
+    newTagField.setAttribute('name', 'tags');
+    newTagField.setAttribute('id', `tag${tagCounter}`);
+    let newTagColor = document.createElement('input');
+    newTagColor.setAttribute('type', 'color');
+    newTagColor.setAttribute('name', 'tags-color');
+    newTagColor.setAttribute('id', `tag-color${tagCounter}`);
+    let newTagDelete = document.createElement('button');
+    newTagDelete.textContent = '-';
+    // New tag is removed
+    newTagDelete.addEventListener('click', (deleteEvent) => {
+      deleteEvent.preventDefault;
+      newTagField.remove();
+      newTagColor.remove();
+      newTagDelete.remove();
+    });
+    tagDiv.append(newTagField);
+    tagDiv.append(newTagColor);
+    tagDiv.append(newTagDelete);
+  });
+
+  // Handle New Application Form Notes
+  let notesDiv = document.getElementById('notes-section');
+  let newNoteButton = document.getElementById('new-note-button');
+  let noteCounter = 1;
+  // New note is added
+  newNoteButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    noteCounter++;
+    let newNoteField = document.createElement('input');
+    newNoteField.setAttribute('type', 'text');
+    newNoteField.setAttribute('name', 'notes');
+    newNoteField.setAttribute('id', `note${noteCounter}`);
+    let newNoteDelete = document.createElement('button');
+    newNoteDelete.textContent = '-';
+    // New note is removed
+    newNoteDelete.addEventListener('click', (deleteEvent) => {
+      deleteEvent.preventDefault;
+      newNoteField.remove();
+      newNoteDelete.remove();
+    });
+    notesDiv.append(newNoteField);
+    notesDiv.append(newNoteDelete);
+  });
+
+  // Get data from New Application Form and add it to local storage
+  const newAppSaveBttn = document.getElementById('new-application-save-button');
+  newAppSaveBttn.addEventListener('click',(event) => {
+    event.preventDefault();
+    console.log('Oooo yay');
+    // TODO: Get info from fields, save to local storage, refresh and load from local storage
+  });
+
 }());
