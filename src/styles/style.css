@@ -1,0 +1,108 @@
+header {
+  margin: 2rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Main Job Card */
+.job-card {
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+}
+
+.main-info-subcard {
+  display: flex;
+  justify-content: space-between;
+}
+
+.job-title-box {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+.job-info-box {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  width: 40%;
+  margin-right: 2rem;
+}
+
+
+.job-info-subbox {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Detailed Info Subcard */
+.detailed-info-subcard {
+  display: flex;
+  justify-content: space-between;
+  border: solid 2px;
+  border-top: none;
+  margin-bottom: 2rem;
+}
+
+.notes-box {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.tags-box {
+  display: flex;
+  align-items: center;
+}
+
+.tags-subbox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-left: 5px;
+}
+
+.tags-subbox p{
+  padding: 3px;
+}
+
+.resume-file-box {
+  display: flex;
+  align-items: center;
+}
+
+.interested-card {
+  background-color: skyblue;
+  color: black;
+  border-color: skyblue;
+}
+
+.applied-card {
+  background-color: blue;
+  color: white;
+  border-color: blue;
+}
+
+.interviewing-card {
+  background-color: teal;
+  color: white;
+  border-color: teal;
+}
+
+.rejected-card {
+  background-color: orangered;
+  color: white;
+  border-color: orangered;
+}
+
+.offered-card {
+  background-color: greenyellow;
+  color: black;
+  border-color: greenyellow;
+}
