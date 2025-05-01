@@ -1,3 +1,28 @@
+* {
+  --interested-color: #04b3f8;
+  --interested-light: #04b3f825;
+  --applied-color: #466eb4;
+  --applied-light: #466eb429;
+  --interviewing-color: #41afaa;
+  --interviewing-light: #41afa925;
+  --rejected-color: #d7492c;
+  --rejected-light: #d7492c29;
+  --offered-color: #23af2d;
+  --offered-light: #23af2c24;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+p,li {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+  background-color: whitesmoke;
+}
+
 header {
   margin: 2rem;
 }
@@ -78,31 +103,66 @@ main {
 }
 
 .interested-card {
-  background-color: skyblue;
+  background-color: var(--interested-color);
   color: black;
-  border-color: skyblue;
+  border-color: var(--interested-color);
+}
+
+.interested-info {
+  background-color: var(--interested-light);
 }
 
 .applied-card {
-  background-color: blue;
+  background-color: var(--applied-color);
   color: white;
-  border-color: blue;
+  border-color: var(--applied-color);
+}
+
+.applied-info {
+  background-color: var(--applied-light);
 }
 
 .interviewing-card {
-  background-color: teal;
+  background-color: var(--interviewing-color);
   color: white;
-  border-color: teal;
+  border-color: var(--interviewing-color);
+}
+
+.interviewing-info {
+  background-color: var(--interviewing-light);
 }
 
 .rejected-card {
-  background-color: orangered;
+  background-color: var(--rejected-color);
   color: white;
-  border-color: orangered;
+  border-color: var(--rejected-color);
+}
+
+.rejected-info {
+  background-color: var(--rejected-light);
 }
 
 .offered-card {
-  background-color: greenyellow;
+  background-color: var(--offered-color);
   color: black;
-  border-color: greenyellow;
+  border-color: var(--offered-color);
+}
+
+.offered-info {
+  background-color: var(--offered-light);
+}
+
+/* Add New Application Styling */
+
+.new-app-button {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgb(112, 112, 112);
+  color: white;
+  text-decoration: none;
+}
+
+.new-app-button:hover {
+  background-color: rgb(78, 78, 78);
+  cursor: pointer;
 }

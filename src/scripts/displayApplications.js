@@ -49,7 +49,7 @@
     Job: "Application Developer",
     Company: "St. Luke's University Health Network",
     Location: "Allentown, PA",
-    Status: 2,
+    Status: 1,
     DateApplied: "2024-10-02",
     Tags: [
       {
@@ -105,21 +105,27 @@
     });
 
     let mainInfoCard = clone.getElementById('main-info');
+    let subInfoCard = clone.getElementById('sub-info');
     switch (application.Status) {
       case Status.INTERESTED:
         mainInfoCard.classList.add('interested-card');
+        subInfoCard.classList.add('interested-info');
         break;
       case Status.APPLIED:
         mainInfoCard.classList.add('applied-card');
+        subInfoCard.classList.add('applied-info');
         break;
       case Status.INTERVIEWING:
         mainInfoCard.classList.add('interviewing-card');
+        subInfoCard.classList.add('interviewing-info');
         break;
       case Status.REJECTED:
         mainInfoCard.classList.add('rejected-card');
+        subInfoCard.classList.add('rejected-info');
         break;
       case Status.OFFERED:
         mainInfoCard.classList.add('offered-card');
+        subInfoCard.classList.add('offered-info');
         break;
       default:
         break;
@@ -128,5 +134,12 @@
     mainSection.append(clone);
   });
 
+  // Button for new Application Button
+  let button = document.createElement('a');
+  button.classList.add('new-app-button');
+  button.textContent = 'Add New Application';
+  button.setAttribute('data-bs-toggle', 'modal');
+  button.setAttribute('data-bs-target', '#addApplicationModal');
+  mainSection.append(button);
 
 }());
