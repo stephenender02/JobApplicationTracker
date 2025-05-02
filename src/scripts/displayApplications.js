@@ -44,7 +44,7 @@ class Tag {
 
   const mainSection = document.querySelector('main');
   let myApplications = JSON.parse(localStorage.getItem('jobs'));
-  if (!myApplications) {
+  if (!myApplications || myApplications.length == 0) {
     let tip = document.createElement('h3');
     tip.textContent = 'It looks like you haven\'t created any jobs to track yet. Try adding one now!';
     mainSection.append(tip);
@@ -53,7 +53,7 @@ class Tag {
 
   // Get clone set up for template work
   const template = document.getElementById('job-card-template');
-  myApplications.forEach(application => {
+  myApplications.forEach((application, index) => {
     const clone = template.content.cloneNode(true);
 
     // Start filling out fields based on user data
@@ -117,9 +117,15 @@ class Tag {
       default:
         break;
     }
-
+    let deleteButton = clone.getElementById('delete-job-button');
+    deleteButton.addEventListener('click', () => {
+      myApplications.splice(index, 1);
+      localStorage.setItem('jobs', JSON.stringify(myApplications));
+      window.location.reload();
+    });
     mainSection.append(clone);
   });
+
 
   // Button for new Application Button
   let button = document.createElement('a');
