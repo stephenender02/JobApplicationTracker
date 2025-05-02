@@ -1,5 +1,39 @@
-(function(){
+class Job {
+  title;
+  company;
+  location;
+  status;
+  date;
+  tags = [];
+  notes = [];
+  resumeFile;
 
+  constructor(title, company, location, status, date) {
+    this.title = title;
+    this.company = company;
+    this.location = location;
+    this.status = parseInt(status);
+    this.date = date;
+  }
+  
+  addTag(tag) {
+    this.tags.push(tag);
+  }
+
+  addNote(note) {
+    this.notes.push(note);
+  }
+  
+}
+
+class Tag {
+  constructor(content, color) {
+    this.content = content;
+    this.color = color;
+  }
+}
+
+(function(){
   const Status = Object.freeze({
     INTERESTED: 0,
     APPLIED: 1,
@@ -8,92 +42,45 @@
     OFFERED: 4
   });
 
-
-  let myDataExample1 = {
-    Job: "Software Engineer",
-    Company: "Company A",
-    Location: "Mountain View, CA",
-    Status: 4,
-    DateApplied: "2024-09-22",
-    Tags: [
-      {
-        Content: "Top Choice",
-        Color: "purple"
-      },
-      {
-        Content: "Extra Planning Required",
-        Color: "Orange"
-      }
-    ],
-    Notes: ["Note 1", "Note 2", "Note 3"],
-    Resume: "../files/StephenEnder2025.pdf"
+  const mainSection = document.querySelector('main');
+  let myApplications = JSON.parse(localStorage.getItem('jobs'));
+  if (!myApplications) {
+    let tip = document.createElement('h3');
+    tip.textContent = 'It looks like you haven\'t created any jobs to track yet. Try adding one now!';
+    mainSection.append(tip);
+    myApplications = [];
   }
-
-  let myDataExample2 = {
-    Job: "Application Developer",
-    Company: "Company B",
-    Location: "Allentown, PA",
-    Status: 2,
-    DateApplied: "2024-10-02",
-    Tags: [
-      {
-        Content: "Need to Research",
-        Color: "Red"
-      }
-    ],
-    Notes: ["Note 1", "Note 2", "Note 3"],
-    Resume: "../files/StephenEnder2025.pdf"
-  }
-
-  let myDataExample3 = {
-    Job: "Application Developer",
-    Company: "Company C",
-    Location: "Allentown, PA",
-    Status: 1,
-    DateApplied: "2024-10-02",
-    Tags: [
-      {
-        Content: "Need to Research",
-        Color: "Red"
-      }
-    ],
-    Notes: ["Note 1", "Note 2", "Note 3"],
-    Resume: "../files/StephenEnder2025.pdf"
-  }
-
-  let myApplications = [myDataExample1, myDataExample2, myDataExample3];
 
   // Get clone set up for template work
-  const mainSection = document.querySelector('main');
   const template = document.getElementById('job-card-template');
   myApplications.forEach(application => {
     const clone = template.content.cloneNode(true);
 
     // Start filling out fields based on user data
     let jobTitleH3 = document.createElement('h3');
-    jobTitleH3.textContent = application.Job;
+    jobTitleH3.textContent = application.title;
     clone.getElementById('job-title-box').append(jobTitleH3);
     let dateP = document.createElement('p');
-    dateP.textContent = application.DateApplied;
+    dateP.textContent = application.date;
     clone.getElementById('job-info-box').append(dateP); // TODO: Write helper function to make date pretty
     let companyP = document.createElement('p');
-    companyP.textContent = application.Company;
+    companyP.textContent = application.company;
     let locationP = document.createElement('p');
-    locationP.textContent = application.Location;
+    locationP.textContent = application.location;
     clone.getElementById('job-info-subbox').append(companyP);
     clone.getElementById('job-info-subbox').append(locationP);
 
-    let notes = application.Notes;
+    let notes = application.notes;
     notes.forEach(note => {
       let noteLi = document.createElement('li');
       noteLi.textContent = note;
       clone.getElementById('notes-box-ul').append(noteLi);
     });
 
-    let tags = application.Tags;
+    let tags = application.tags;
     tags.forEach(tag => {
-      let tagContent = tag.Content;
-      let tagColor = tag.Color;
+      let tagContent = tag.content;
+      let tagColor = tag.color;
       let tagP = document.createElement('p');
       tagP.textContent = tagContent;
       if(CSS.supports('color', tagColor)) {
@@ -106,7 +93,7 @@
 
     let mainInfoCard = clone.getElementById('main-info');
     let subInfoCard = clone.getElementById('sub-info');
-    switch (application.Status) {
+    switch (application.status) {
       case Status.INTERESTED:
         mainInfoCard.classList.add('interested-card');
         subInfoCard.classList.add('interested-info');
@@ -200,8 +187,42 @@
   const newAppSaveBttn = document.getElementById('new-application-save-button');
   newAppSaveBttn.addEventListener('click',(event) => {
     event.preventDefault();
-    console.log('Oooo yay');
-    // TODO: Get info from fields, save to local storage, refresh and load from local storage
+
+    // Get info from fields
+    let title = document.getElementById('title').value;
+    let company = document.getElementById('company').value;
+    let location = document.getElementById('location').value;
+    let status = document.querySelector('input[name="status"]:checked').value;
+    let date = document.getElementById('date').value;
+    const newJob = new Job(title, company, location, status, date);
+
+    let hasTags = document.getElementById('tag1').value;
+    if(hasTags) {
+      for(let i = 1; i < tagCounter + 1; i++) {
+        let currentTagContent = document.getElementById(`tag${i}`).value;
+        let currentTagColor = document.getElementById(`tag-color${i}`).value;
+        let newTag = new Tag(currentTagContent, currentTagColor);
+        newJob.addTag(newTag);
+      }
+    }
+    let hasNotes = document.getElementById('note1').value;
+    if(hasNotes) {
+      for(let i = 1; i < noteCounter + 1; i++) {
+        let currentNote = document.getElementById(`note${i}`).value;
+        newJob.addNote(currentNote);
+      }
+    }
+
+    // Add and save job to local storage
+    let data = localStorage.getItem('jobs');
+    if(!data) {
+      localStorage.setItem('jobs', JSON.stringify(new Array()));
+      data = localStorage.getItem('jobs');
+    }
+    let parsedData = JSON.parse(data);
+    parsedData.push(newJob);
+    localStorage.setItem('jobs', JSON.stringify(parsedData));
+    window.location.reload();
   });
 
 }());
